@@ -3,10 +3,12 @@ import { useState, useEffect } from 'react';
 
 import { BookCard } from '../book-card/book-card';
 import { BookView } from '../book-view/book-view';
+import { LoginView } from '../login-view/login-view';
 
 export const MainView = () => {
   const [books, setBooks] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     fetch('https://openlibrary.org/search.json?q=star+wars')
@@ -25,6 +27,9 @@ export const MainView = () => {
       });
   }, []);
 
+  if (!user) {
+    return <LoginView onLoggedIn={(user) => setUser(user)} />;
+  }
   
   if (selectedBook) {
     return <BookView book={selectedBook} onBackClick={() => setSelectedBook(null)} />;
@@ -45,6 +50,12 @@ export const MainView = () => {
           }}
         />
       ))}
+      <button
+        onClick={() => {
+          setUser(null);
+        }}>
+        Logout
+      </button>
     </div>
   );
 };
