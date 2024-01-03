@@ -1,0 +1,23 @@
+{
+  "name": "frontendbooks",
+  "version": "1.0.0",
+  "description": "My Books Client",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ksharples431/FrontendBooks.git"
+  },
+  "author": "Katie Sharples",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.10.3",
+    "process": "^0.11.10"
+  }
+}
