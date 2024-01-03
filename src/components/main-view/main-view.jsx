@@ -15,7 +15,6 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [books, setBooks] = useState([]);
-  const [selectedBook, setSelectedBook] = useState(null);
 
   useEffect(() => {
     if (!token) {
@@ -57,54 +56,126 @@ export const MainView = () => {
   }, [token]);
 
   return (
-    <Row className="justify-content-md-center">
-      {!user ? (
-        <Col md={5}>
-          <LoginView
-            onLoggedIn={(user, token) => {
-              setUser(user);
-              setToken(token);
-            }}
-          />
-          or
-          <SignupView
-            onSignedUp={(user, token) => {
-              setUser(user);
-              setToken(token);
-            }}
-          />
-        </Col>
-      ) : selectedBook ? (
-        <Col md={8}>
-          <BookView
-            book={selectedBook}
-            onBackClick={() => setSelectedBook(null)}
-          />
-        </Col>
-      ) : books.length === 0 ? (
-        <div>The list is empty!</div>
-      ) : (
-        <>
-          {books.map((book) => (
-            <Col className="mb-5" key={book.id} md={3}>
-              <BookCard
-                book={book}
-                onBookClick={(newSelectedBook) => {
-                  setSelectedBook(newSelectedBook);
-                }}
-              />
-            </Col>
-          ))}
-        </>
-      )}
-      <button
-        onClick={() => {
+    <BrowserRouter>
+      <NavBar
+        user={user}
+        onLoggedOut={() => {
           setUser(null);
           setToken(null);
           localStorage.clear();
-        }}>
-        Logout
-      </button>
-    </Row>
+        }}
+      />
+      <Row className="justify-content-md-center">
+        <Routes>
+          <Route
+            path="/signup"
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <SignupView
+                      onSignedUp={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                      }}
+                    />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <LoginView
+                      onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                      }}
+                    />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          {/* <Route
+            path="/profile"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <Col md={8}>
+                    <ProfileView
+                      user={user}
+                      token={token}
+                      books={books}
+                      setUser={setUser}
+                    />
+                  </Col>
+                )}
+              </>
+            }
+          /> */}
+          <Route
+            path="/books/:bookId"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : books.length === 0 ? (
+                  <Col>There are no books in your library.</Col>
+                ) : (
+                  <Col md={8}>
+                    <BookView books={books} />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : books.length === 0 ? (
+                  <Col>There are no books in your library.</Col>
+                ) : (
+                  <>
+                    {books
+                      .slice()
+                      .sort((a, b) => {
+                        // Compare by author
+                        if (a.author !== b.author) {
+                          return a.author.localeCompare(b.author);
+                        }
+                        // If authors are the same, compare by series name
+                        if (a.seriesName !== b.seriesName) {
+                          return a.seriesName.localeCompare(b.seriesName);
+                        }
+                        // If authors and series names are the same, compare by series number
+                        return a.seriesNumber - b.seriesNumber;
+                      })
+                      .map((book) => (
+                        <Col className="mb-4" key={book.id} md={3}>
+                          <BookCard book={book} />
+                        </Col>
+                      ))}
+                  </>
+                )}
+              </>
+            }
+          />
+        </Routes>
+      </Row>
+    </BrowserRouter>
   );
 };

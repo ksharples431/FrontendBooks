@@ -1,7 +1,10 @@
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
-import './book-view.scss';
 
-export const BookView = ({ book, onBackClick }) => {
+export const BookView = ({ books }) => {
+  const { bookId } = useParams();
+  const book = books.find((b) => b.id === bookId);
   return (
     <Card className="h-100" key={book.id}>
       <Card.Img variant="top" src={book.image} />
@@ -10,11 +13,13 @@ export const BookView = ({ book, onBackClick }) => {
         <Card.Text>Author: {book.author}</Card.Text>
         <Card.Text>Genre: {book.genre}</Card.Text>
         <Card.Text>
-          Series: {book.seriesName}: Book {book.seriesNumber}
+          Series: {book.seriesName}, Book {book.seriesNumber}
         </Card.Text>
         <Card.Text>Description: {book.description}</Card.Text>
+        <Link to={`/`}>
+          <Button>Back</Button>
+        </Link>
       </Card.Body>
-      <Button onClick={onBackClick}>Back</Button>
     </Card>
   );
 };
