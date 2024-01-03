@@ -1,13 +1,20 @@
 import PropTypes from 'prop-types';
+import { Button, Card } from 'react-bootstrap';
+
+import './book-card.scss';
 
 export const BookCard = ({ book, onBookClick }) => {
   return (
-    <div
-      onClick={() => {
-        onBookClick(book);
-      }}>
-      {book.title}
-    </div>
+    <Card className="h-100">
+      <Card.Img variant="top" className="h-100" src={book.image} />
+      <Card.Body>
+        <Card.Title>{book.title}</Card.Title>
+        <Card.Text>{book.author}</Card.Text>
+        <Button onClick={() => onBookClick(book)} >
+          Open
+        </Button>
+      </Card.Body>
+    </Card>
   );
 };
 
