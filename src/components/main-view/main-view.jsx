@@ -65,7 +65,7 @@ export const MainView = () => {
           localStorage.clear();
         }}
       />
-      <Row className="justify-content-md-center">
+      <Row className="justify-content-md-center mt-5">
         <Routes>
           <Route
             path="/signup"
@@ -105,7 +105,7 @@ export const MainView = () => {
               </>
             }
           />
-          {/* <Route
+          <Route
             path="/profile"
             element={
               <>
@@ -123,7 +123,7 @@ export const MainView = () => {
                 )}
               </>
             }
-          /> */}
+          />
           <Route
             path="/books/:bookId"
             element={
