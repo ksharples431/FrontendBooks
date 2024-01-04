@@ -35,7 +35,6 @@ export const SignupView = ({ onSignedUp }) => {
       if (response.ok) {
         const data = await response.json();
         console.log(data);
-
         if (data) {
           localStorage.setItem('user', JSON.stringify(data.userInfo));
           localStorage.setItem('token', data.userInfo.token);
@@ -50,7 +49,7 @@ export const SignupView = ({ onSignedUp }) => {
         );
       }
     } catch (error) {
-      console.error('An error occurred:', error);
+      console.error('Error signing up:', error);
     }
   };
 
