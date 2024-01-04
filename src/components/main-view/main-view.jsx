@@ -185,6 +185,7 @@ export const MainView = () => {
                       token={token}
                       books={books}
                       setUser={setUser}
+                      removeFavorite={removeFavorite}
                     />
                   </Col>
                 )}

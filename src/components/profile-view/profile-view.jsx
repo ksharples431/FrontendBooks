@@ -11,15 +11,13 @@ import {
   Figure,
 } from 'react-bootstrap';
 
-export const ProfileView = ({ user, token, books, setUser }) => {
+export const ProfileView = ({ user, token, books, setUser, removeFavorite }) => {
   const cardBody = {
     backgroundColor: '#f5fab2',
   };
   const [username, setUsername] = useState(user.username);
   const [email, setEmail] = useState(user.email);
   const [birthday, setBirthday] = useState(user.birthday);
-
-  console.log(user);
 
   // Filter Favorite Books
   const favBooks = books.filter((book) =>
@@ -34,6 +32,7 @@ export const ProfileView = ({ user, token, books, setUser }) => {
   const year = originalDate.getFullYear();
   const newBirthday = `${month}-${day}-${year}`;
 
+  // Update Profile
   const handleUpdate = async (e) => {
     e.preventDefault();
 
@@ -164,19 +163,14 @@ export const ProfileView = ({ user, token, books, setUser }) => {
             <Row>
               {favBooks.map((book) => {
                 return (
-                  <Col
-                    xs={12}
-                    md={6}
-                    lg={3}
-                    key={book.id}
-                    className="fav-book">
+                  <Col xs={12} md={6} lg={3} key={book.id}>
                     <Figure>
                       <Link to={`/books/${book.id}`}>
                         <Figure.Image src={book.image} alt={book.title} />
                         <Figure.Caption>{book.title}</Figure.Caption>
                       </Link>
                     </Figure>
-                    <Button onClick={() => removeFavorite(book._id)}>
+                    <Button onClick={() => removeFavorite(user, book.id)}>
                       Remove
                     </Button>
                   </Col>
