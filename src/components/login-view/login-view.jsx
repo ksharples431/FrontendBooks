@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Form, Button, Card } from 'react-bootstrap'
-
+import { Form, Button, Card } from 'react-bootstrap';
 
 export const LoginView = ({ onLoggedIn }) => {
   const cardBody = {
     backgroundColor: '#f5fab2',
   };
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 

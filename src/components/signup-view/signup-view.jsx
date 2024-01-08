@@ -3,7 +3,7 @@ import { Form, Button, Card } from 'react-bootstrap';
 
 export const SignupView = ({ onSignedUp }) => {
   const cardBody = {
-    backgroundColor: '#f5fab2'
+    backgroundColor: '#f5fab2',
   };
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -34,7 +34,6 @@ export const SignupView = ({ onSignedUp }) => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
         if (data) {
           localStorage.setItem('user', JSON.stringify(data.userInfo));
           localStorage.setItem('token', data.userInfo.token);

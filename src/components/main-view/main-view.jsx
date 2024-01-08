@@ -16,8 +16,6 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [books, setBooks] = useState([]);
 
-  console.log(user);
-
   useEffect(() => {
     if (!token) {
       return;
@@ -59,7 +57,6 @@ export const MainView = () => {
 
   const addFavorite = async (user, book) => {
     try {
-      console.log(book)
       const response = await fetch(
         `https://backendbooks-9697c5937ad6.herokuapp.com/users/${user._id}/favorites/${book}`,
         {
@@ -72,7 +69,6 @@ export const MainView = () => {
       );
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
         if (data) {
           localStorage.setItem('user', JSON.stringify(data));
           setUser(data);
@@ -104,7 +100,6 @@ export const MainView = () => {
       );
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
         if (data) {
           localStorage.setItem('user', JSON.stringify(data));
           setUser(data);

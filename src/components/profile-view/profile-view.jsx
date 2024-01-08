@@ -11,7 +11,13 @@ import {
   Figure,
 } from 'react-bootstrap';
 
-export const ProfileView = ({ user, token, books, setUser, removeFavorite }) => {
+export const ProfileView = ({
+  user,
+  token,
+  books,
+  setUser,
+  removeFavorite,
+}) => {
   const cardBody = {
     backgroundColor: '#f5fab2',
   };
@@ -25,14 +31,46 @@ export const ProfileView = ({ user, token, books, setUser, removeFavorite }) => 
   );
 
   // Display Correct Birthday
-  const originalDateString = user.birthday;
-  const originalDate = new Date(originalDateString);
-  const day = (originalDate.getDate() + 1).toString().padStart(2, '0');
-  const month = (originalDate.getMonth() + 1).toString().padStart(2, '0');
-  const year = originalDate.getFullYear();
-  const newBirthday = `${month}-${day}-${year}`;
+  const displayBirthday = user.birthday.slice(0, 10);
+  // const originalDate = new Date(originalDateString);
+  // const day = (originalDate.getDate() + 1).toString().padStart(2, '0');
+  // const month = (originalDate.getMonth() + 1).toString().padStart(2, '0');
+  // const year = originalDate.getFullYear();
+  // const displayBirthday = `${month}-${day}-${year}`;
 
-  // Update Profile
+  // Deregister User
+  const handleDelete = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(
+        `https://backendbooks-9697c5937ad6.herokuapp.com/users/${username}`,
+        {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.ok) {
+        setUser(null);
+        localStorage.clear();
+        alert('your account has been deleted');
+        window.location.replace('/login');
+      } else {
+        alert('Could not delete account');
+      }
+    } catch (error) {
+      console.error(
+        'Error occurred while trying to delete profile:',
+        error
+      );
+    }
+  };
+
+  // Update User
   const handleUpdate = async (e) => {
     e.preventDefault();
 
@@ -44,7 +82,7 @@ export const ProfileView = ({ user, token, books, setUser, removeFavorite }) => 
 
     try {
       const response = await fetch(
-        `https://backendbooks-9697c5937ad6.herokuapp.com/users/${username}`,
+        `https://backendbooks-9697c5937ad6.herokuapp.com/users/${user.username}`,
         {
           method: 'PATCH',
           headers: {
@@ -60,13 +98,9 @@ export const ProfileView = ({ user, token, books, setUser, removeFavorite }) => 
         console.log('Update response: ', data);
 
         if (data) {
-          localStorage.setItem('user', JSON.stringify(data.userInfo));
-          localStorage.setItem('token', data.userInfo.token);
-          // setUser(data.userInfo);
-          setUsername(data.userInfo.username);
-          setEmail(data.userInfo.email);
-          setBirthday(data.userInfo.birthday);
-          // onLoggedIn(data.user, data.token); // update the state of the parent component
+
+          localStorage.setItem('user', JSON.stringify(data.updatedUser));
+          setUser(data.updatedUser);
         } else {
           throw new Error('Update failed');
         }
@@ -88,15 +122,13 @@ export const ProfileView = ({ user, token, books, setUser, removeFavorite }) => 
           </Card.Header>
           <Card.Body style={cardBody}>
             <Card.Text>
-              <p>
-                <strong>Username:</strong> {username}
-              </p>
-              <p>
-                <strong>Email:</strong> {email}
-              </p>
-              <p>
-                <strong>Birthday:</strong> {newBirthday}
-              </p>
+              <strong>Username:</strong> {username}
+            </Card.Text>
+            <Card.Text>
+              <strong>Email:</strong> {email}
+            </Card.Text>
+            <Card.Text>
+              <strong>Birthday:</strong> {displayBirthday}
             </Card.Text>
           </Card.Body>
         </Card>
@@ -150,7 +182,7 @@ export const ProfileView = ({ user, token, books, setUser, removeFavorite }) => 
           </Card.Body>
         </Card>
       </Row>
-      <Row>
+      <Row className="mb-5">
         <Card>
           <Card.Header>
             <Row>
@@ -177,6 +209,27 @@ export const ProfileView = ({ user, token, books, setUser, removeFavorite }) => 
                 );
               })}
             </Row>
+          </Card.Body>
+        </Card>
+      </Row>
+      <Row className="mb-5">
+        <Card>
+          <Card.Header>
+            <strong>Deregister</strong>
+          </Card.Header>
+          <Card.Body style={cardBody}>
+            <Card.Text>
+              <strong>
+                Please remove me from the app and delete all my data:
+              </strong>
+              <Button
+                className="remove-btn"
+                onClick={handleDelete}
+                variant="danger"
+                type="submit">
+                Deregister
+              </Button>
+            </Card.Text>
           </Card.Body>
         </Card>
       </Row>
