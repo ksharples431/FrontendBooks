@@ -1,13 +1,16 @@
 import { useState } from 'react';
-import { Form, Button, Card } from 'react-bootstrap'
-
+import { Form, Button, Card } from 'react-bootstrap';
 
 export const LoginView = ({ onLoggedIn }) => {
+  const cardBody = {
+    backgroundColor: '#f5fab2',
+  };
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     const data = {
       email: email,
@@ -50,7 +53,7 @@ export const LoginView = ({ onLoggedIn }) => {
   return (
     <Card>
       <Card.Header>Log In</Card.Header>
-      <Card.Body>
+      <Card.Body style={cardBody}>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formLoginEmail">
             <Form.Label>Email: </Form.Label>
@@ -60,6 +63,7 @@ export const LoginView = ({ onLoggedIn }) => {
               onChange={(e) => setEmail(e.target.value)}
               required
               minLength="3"
+              className="mb-3"
             />
           </Form.Group>
           <Form.Group controlId="formLoginPassword">
@@ -71,7 +75,7 @@ export const LoginView = ({ onLoggedIn }) => {
               required
             />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" className="mt-3">
             Submit
           </Button>
         </Form>

@@ -2,13 +2,16 @@ import { useState } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 
 export const SignupView = ({ onSignedUp }) => {
+  const cardBody = {
+    backgroundColor: '#f5fab2',
+  };
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [birthday, setBirthday] = useState('');
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     const data = {
       username: username,
@@ -31,8 +34,6 @@ export const SignupView = ({ onSignedUp }) => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
-
         if (data) {
           localStorage.setItem('user', JSON.stringify(data.userInfo));
           localStorage.setItem('token', data.userInfo.token);
@@ -47,14 +48,14 @@ export const SignupView = ({ onSignedUp }) => {
         );
       }
     } catch (error) {
-      console.error('An error occurred:', error);
+      console.error('Error signing up:', error);
     }
   };
 
   return (
     <Card>
       <Card.Header>Log In</Card.Header>
-      <Card.Body>
+      <Card.Body style={cardBody}>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formSignupUsername">
             <Form.Label>Username: </Form.Label>
@@ -64,6 +65,7 @@ export const SignupView = ({ onSignedUp }) => {
               onChange={(e) => setUsername(e.target.value)}
               required
               minLength="3"
+              className="mb-3"
             />
           </Form.Group>
           <Form.Group controlId="formSignupEmail">
@@ -74,6 +76,7 @@ export const SignupView = ({ onSignedUp }) => {
               onChange={(e) => setEmail(e.target.value)}
               required
               minLength="3"
+              className="mb-3"
             />
           </Form.Group>
           <Form.Group controlId="formSignupPassword">
@@ -84,6 +87,7 @@ export const SignupView = ({ onSignedUp }) => {
               onChange={(e) => setPassword(e.target.value)}
               required
               minLength="3"
+              className="mb-3"
             />
           </Form.Group>
           <Form.Group controlId="formSignupBirthday">
@@ -95,7 +99,7 @@ export const SignupView = ({ onSignedUp }) => {
               required
             />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" className="mt-3">
             Submit
           </Button>
         </Form>

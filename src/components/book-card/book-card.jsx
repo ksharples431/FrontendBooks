@@ -23,5 +23,5 @@ BookCard.propTypes = {
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
-  }).isRequired
+  }).isRequired,
 };
