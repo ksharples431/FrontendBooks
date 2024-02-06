@@ -105,7 +105,7 @@ export const MainView = () => {
               </>
             }
           />
-          {/* <Route
+          <Route
             path="/profile"
             element={
               <>
@@ -123,7 +123,7 @@ export const MainView = () => {
                 )}
               </>
             }
-          /> */}
+          />
           <Route
             path="/books/:bookId"
             element={
