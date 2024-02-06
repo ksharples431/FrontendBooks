@@ -55,6 +55,68 @@ export const MainView = () => {
     fetchBooks();
   }, [token]);
 
+  const addFavorite = async (user, book) => {
+    try {
+      const response = await fetch(
+        `https://backendbooks-9697c5937ad6.herokuapp.com/users/${user._id}/favorites/${book}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        if (data) {
+          localStorage.setItem('user', JSON.stringify(data));
+          setUser(data);
+        } else {
+          alert('User data not found.');
+        }
+      } else {
+        console.error(
+          'Patch request failed with status:',
+          response.status
+        );
+      }
+    } catch (error) {
+      console.error('Error adding favorite:', error);
+    }
+  };
+
+  const removeFavorite = async (user, book) => {
+    try {
+      const response = await fetch(
+        `https://backendbooks-9697c5937ad6.herokuapp.com/users/${user._id}/favorites/${book}`,
+        {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        if (data) {
+          localStorage.setItem('user', JSON.stringify(data));
+          setUser(data);
+        } else {
+          alert('User data not found.');
+        }
+      } else {
+        console.error(
+          'Delete request failed with status:',
+          response.status
+        );
+      }
+    } catch (error) {
+      console.error('Error deleting favorite:', error);
+    }
+  };
+
   return (
     <BrowserRouter>
       <NavBar
@@ -65,7 +127,7 @@ export const MainView = () => {
           localStorage.clear();
         }}
       />
-      <Row className="justify-content-md-center">
+      <Row className="justify-content-md-center mt-5">
         <Routes>
           <Route
             path="/signup"
@@ -118,6 +180,7 @@ export const MainView = () => {
                       token={token}
                       books={books}
                       setUser={setUser}
+                      removeFavorite={removeFavorite}
                     />
                   </Col>
                 )}
@@ -134,7 +197,12 @@ export const MainView = () => {
                   <Col>There are no books in your library.</Col>
                 ) : (
                   <Col md={8}>
-                    <BookView books={books} />
+                    <BookView
+                      books={books}
+                      addFavorite={addFavorite}
+                      removeFavorite={removeFavorite}
+                      user={user}
+                    />
                   </Col>
                 )}
               </>
