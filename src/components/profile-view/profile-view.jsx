@@ -31,12 +31,13 @@ export const ProfileView = ({
   );
 
   // Display Correct Birthday
-  const displayBirthday = user.birthday.slice(0, 10);
-  // const originalDate = new Date(originalDateString);
-  // const day = (originalDate.getDate() + 1).toString().padStart(2, '0');
-  // const month = (originalDate.getMonth() + 1).toString().padStart(2, '0');
-  // const year = originalDate.getFullYear();
-  // const displayBirthday = `${month}-${day}-${year}`;
+  const date = new Date(birthday);
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  const year = date.getFullYear();
+
+  const formattedBirthday = `${month}-${day}-${year}`;
+
 
   // Deregister User
   const handleDelete = async (e) => {
@@ -98,7 +99,6 @@ export const ProfileView = ({
         console.log('Update response: ', data);
 
         if (data) {
-
           localStorage.setItem('user', JSON.stringify(data.updatedUser));
           setUser(data.updatedUser);
         } else {
@@ -128,7 +128,7 @@ export const ProfileView = ({
               <strong>Email:</strong> {email}
             </Card.Text>
             <Card.Text>
-              <strong>Birthday:</strong> {displayBirthday}
+              <strong>Birthday:</strong> {formattedBirthday}
             </Card.Text>
           </Card.Body>
         </Card>
@@ -202,7 +202,8 @@ export const ProfileView = ({
                         <Figure.Caption>{book.title}</Figure.Caption>
                       </Link>
                     </Figure>
-                    <Button onClick={() => removeFavorite(user, book.id)}>
+                    <Button
+                      onClick={() => removeFavorite(user._id, book.id)}>
                       Remove
                     </Button>
                   </Col>
