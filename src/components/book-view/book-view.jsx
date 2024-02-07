@@ -5,16 +5,17 @@ import { Card, Button, Row } from 'react-bootstrap';
 export const BookView = ({ user, books, addFavorite, removeFavorite }) => {
   const { bookId } = useParams();
   const book = books.find((b) => b.id === bookId);
+  console.log(user)
 
   const handleAddFavorite = () => {
     if (user && book) {
-      addFavorite(user, book.id);
+      addFavorite(user._id, book.id);
     }
   };
 
   const handleRemoveFavorite = () => {
     if (user && book) {
-      removeFavorite(user, book.id);
+      removeFavorite(user._id, book.id);
     }
   };
 

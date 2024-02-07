@@ -58,7 +58,7 @@ export const MainView = () => {
   const addFavorite = async (user, book) => {
     try {
       const response = await fetch(
-        `https://backendbooks-9697c5937ad6.herokuapp.com/users/${user._id}/favorites/${book}`,
+        `https://backendbooks-9697c5937ad6.herokuapp.com/users/${user}/favorites/${book}`,
         {
           method: 'PATCH',
           headers: {
@@ -89,7 +89,7 @@ export const MainView = () => {
   const removeFavorite = async (user, book) => {
     try {
       const response = await fetch(
-        `https://backendbooks-9697c5937ad6.herokuapp.com/users/${user._id}/favorites/${book}`,
+        `https://backendbooks-9697c5937ad6.herokuapp.com/users/${user}/favorites/${book}`,
         {
           method: 'DELETE',
           headers: {
