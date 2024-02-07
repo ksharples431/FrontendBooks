@@ -30,13 +30,14 @@ export const ProfileView = ({
     user.favorites.includes(book.id)
   );
 
-  // Display Correct Birthday
+  // Display correct birthday and correct react warning
   const date = new Date(birthday);
+  date.setDate(date.getDate() + 1);
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const day = date.getDate().toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0')
   const year = date.getFullYear();
-
   const formattedBirthday = `${month}-${day}-${year}`;
+  const inputBirthday = new Date(birthday).toISOString().split('T')[0];
 
 
   // Deregister User
@@ -170,7 +171,7 @@ export const ProfileView = ({
                 </Form.Label>
                 <Form.Control
                   type="date"
-                  value={birthday}
+                  value={inputBirthday}
                   onChange={(e) => setBirthday(e.target.value)}
                   className="mb-3"
                 />

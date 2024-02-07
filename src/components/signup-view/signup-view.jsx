@@ -13,16 +13,11 @@ export const SignupView = ({ onSignedUp }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newBirthday = new Date(birthday);
-    const formattedBirthday = newBirthday.toISOString().split('T')[0];
-    console.log(formattedBirthday)
-    console.log(birthday)
-
     const data = {
       username: username,
       email: email,
       password: password,
-      birthday: formattedBirthday,
+      birthday: birthday,
     };
 
     try {
@@ -40,7 +35,6 @@ export const SignupView = ({ onSignedUp }) => {
       if (response.ok) {
         const data = await response.json();
         if (data) {
-          console.log(data.userInfo)
           localStorage.setItem('user', JSON.stringify(data.userInfo));
           localStorage.setItem('token', data.userInfo.token);
           onSignedUp(data.userInfo, data.userInfo.token);

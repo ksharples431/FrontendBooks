@@ -16,6 +16,7 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [books, setBooks] = useState([]);
 
+
   useEffect(() => {
     if (!token) {
       return;
@@ -55,10 +56,10 @@ export const MainView = () => {
     fetchBooks();
   }, [token]);
 
-  const addFavorite = async (user, book) => {
+  const addFavorite = async (uid, bid) => {
     try {
       const response = await fetch(
-        `https://backendbooks-9697c5937ad6.herokuapp.com/users/${user}/favorites/${book}`,
+        `https://backendbooks-9697c5937ad6.herokuapp.com/users/${uid}/favorites/${bid}`,
         {
           method: 'PATCH',
           headers: {
@@ -86,10 +87,10 @@ export const MainView = () => {
     }
   };
 
-  const removeFavorite = async (user, book) => {
+  const removeFavorite = async (uid, bid) => {
     try {
       const response = await fetch(
-        `https://backendbooks-9697c5937ad6.herokuapp.com/users/${user}/favorites/${book}`,
+        `https://backendbooks-9697c5937ad6.herokuapp.com/users/${uid}/favorites/${bid}`,
         {
           method: 'DELETE',
           headers: {

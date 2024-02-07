@@ -27223,9 +27223,9 @@ const MainView = ()=>{
     }, [
         token
     ]);
-    const addFavorite = async (user, book)=>{
+    const addFavorite = async (uid, bid)=>{
         try {
-            const response = await fetch(`https://backendbooks-9697c5937ad6.herokuapp.com/users/${user}/favorites/${book}`, {
+            const response = await fetch(`https://backendbooks-9697c5937ad6.herokuapp.com/users/${uid}/favorites/${bid}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -27243,9 +27243,9 @@ const MainView = ()=>{
             console.error("Error adding favorite:", error);
         }
     };
-    const removeFavorite = async (user, book)=>{
+    const removeFavorite = async (uid, bid)=>{
         try {
-            const response = await fetch(`https://backendbooks-9697c5937ad6.herokuapp.com/users/${user}/favorites/${book}`, {
+            const response = await fetch(`https://backendbooks-9697c5937ad6.herokuapp.com/users/${uid}/favorites/${bid}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -27274,7 +27274,7 @@ const MainView = ()=>{
                 }
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 122,
+                lineNumber: 123,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -27298,7 +27298,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 132,
+                            lineNumber: 133,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27318,7 +27318,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 151,
+                            lineNumber: 152,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27340,7 +27340,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 170,
+                            lineNumber: 171,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27363,7 +27363,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 190,
+                            lineNumber: 191,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27393,24 +27393,24 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 211,
+                            lineNumber: 212,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 131,
+                    lineNumber: 132,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 130,
+                lineNumber: 131,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 121,
+        lineNumber: 122,
         columnNumber: 5
     }, undefined);
 };
@@ -41386,7 +41386,6 @@ const BookView = ({ user, books, addFavorite, removeFavorite })=>{
     _s();
     const { bookId } = (0, _reactRouter.useParams)();
     const book = books.find((b)=>b.id === bookId);
-    console.log(user);
     const handleAddFavorite = ()=>{
         if (user && book) addFavorite(user._id, book.id);
     };
@@ -41401,7 +41400,7 @@ const BookView = ({ user, books, addFavorite, removeFavorite })=>{
                 src: book.image
             }, void 0, false, {
                 fileName: "src/components/book-view/book-view.jsx",
-                lineNumber: 24,
+                lineNumber: 23,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -41411,7 +41410,7 @@ const BookView = ({ user, books, addFavorite, removeFavorite })=>{
                         children: book.title
                     }, void 0, false, {
                         fileName: "src/components/book-view/book-view.jsx",
-                        lineNumber: 26,
+                        lineNumber: 25,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
@@ -41421,7 +41420,7 @@ const BookView = ({ user, books, addFavorite, removeFavorite })=>{
                         ]
                     }, void 0, true, {
                         fileName: "src/components/book-view/book-view.jsx",
-                        lineNumber: 27,
+                        lineNumber: 26,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
@@ -41431,7 +41430,7 @@ const BookView = ({ user, books, addFavorite, removeFavorite })=>{
                         ]
                     }, void 0, true, {
                         fileName: "src/components/book-view/book-view.jsx",
-                        lineNumber: 28,
+                        lineNumber: 27,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
@@ -41443,7 +41442,7 @@ const BookView = ({ user, books, addFavorite, removeFavorite })=>{
                         ]
                     }, void 0, true, {
                         fileName: "src/components/book-view/book-view.jsx",
-                        lineNumber: 29,
+                        lineNumber: 28,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
@@ -41453,7 +41452,7 @@ const BookView = ({ user, books, addFavorite, removeFavorite })=>{
                         ]
                     }, void 0, true, {
                         fileName: "src/components/book-view/book-view.jsx",
-                        lineNumber: 32,
+                        lineNumber: 31,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
@@ -41466,7 +41465,7 @@ const BookView = ({ user, books, addFavorite, removeFavorite })=>{
                                 children: "Add"
                             }, void 0, false, {
                                 fileName: "src/components/book-view/book-view.jsx",
-                                lineNumber: 35,
+                                lineNumber: 34,
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -41475,13 +41474,13 @@ const BookView = ({ user, books, addFavorite, removeFavorite })=>{
                                 children: "Remove"
                             }, void 0, false, {
                                 fileName: "src/components/book-view/book-view.jsx",
-                                lineNumber: 38,
+                                lineNumber: 37,
                                 columnNumber: 11
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/book-view/book-view.jsx",
-                        lineNumber: 33,
+                        lineNumber: 32,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -41491,29 +41490,29 @@ const BookView = ({ user, books, addFavorite, removeFavorite })=>{
                                 children: "Home"
                             }, void 0, false, {
                                 fileName: "src/components/book-view/book-view.jsx",
-                                lineNumber: 44,
+                                lineNumber: 43,
                                 columnNumber: 13
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/book-view/book-view.jsx",
-                            lineNumber: 43,
+                            lineNumber: 42,
                             columnNumber: 11
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/book-view/book-view.jsx",
-                        lineNumber: 42,
+                        lineNumber: 41,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/book-view/book-view.jsx",
-                lineNumber: 25,
+                lineNumber: 24,
                 columnNumber: 7
             }, undefined)
         ]
     }, book.id, true, {
         fileName: "src/components/book-view/book-view.jsx",
-        lineNumber: 23,
+        lineNumber: 22,
         columnNumber: 5
     }, undefined);
 };
@@ -41709,15 +41708,11 @@ const SignupView = ({ onSignedUp })=>{
     const [birthday, setBirthday] = (0, _react.useState)("");
     const handleSubmit = async (e)=>{
         e.preventDefault();
-        const newBirthday = new Date(birthday);
-        const formattedBirthday = newBirthday.toISOString().split("T")[0];
-        console.log(formattedBirthday);
-        console.log(birthday);
         const data = {
             username: username,
             email: email,
             password: password,
-            birthday: formattedBirthday
+            birthday: birthday
         };
         try {
             const response = await fetch("https://backendbooks-9697c5937ad6.herokuapp.com/auth/signup", {
@@ -41730,7 +41725,6 @@ const SignupView = ({ onSignedUp })=>{
             if (response.ok) {
                 const data = await response.json();
                 if (data) {
-                    console.log(data.userInfo);
                     localStorage.setItem("user", JSON.stringify(data.userInfo));
                     localStorage.setItem("token", data.userInfo.token);
                     onSignedUp(data.userInfo, data.userInfo.token);
@@ -41746,7 +41740,7 @@ const SignupView = ({ onSignedUp })=>{
                 children: "Log In"
             }, void 0, false, {
                 fileName: "src/components/signup-view/signup-view.jsx",
-                lineNumber: 63,
+                lineNumber: 57,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -41761,7 +41755,7 @@ const SignupView = ({ onSignedUp })=>{
                                     children: "Username: "
                                 }, void 0, false, {
                                     fileName: "src/components/signup-view/signup-view.jsx",
-                                    lineNumber: 67,
+                                    lineNumber: 61,
                                     columnNumber: 13
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -41773,13 +41767,13 @@ const SignupView = ({ onSignedUp })=>{
                                     className: "mb-3"
                                 }, void 0, false, {
                                     fileName: "src/components/signup-view/signup-view.jsx",
-                                    lineNumber: 68,
+                                    lineNumber: 62,
                                     columnNumber: 13
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/signup-view/signup-view.jsx",
-                            lineNumber: 66,
+                            lineNumber: 60,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -41789,7 +41783,7 @@ const SignupView = ({ onSignedUp })=>{
                                     children: "Email: "
                                 }, void 0, false, {
                                     fileName: "src/components/signup-view/signup-view.jsx",
-                                    lineNumber: 78,
+                                    lineNumber: 72,
                                     columnNumber: 13
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -41801,13 +41795,13 @@ const SignupView = ({ onSignedUp })=>{
                                     className: "mb-3"
                                 }, void 0, false, {
                                     fileName: "src/components/signup-view/signup-view.jsx",
-                                    lineNumber: 79,
+                                    lineNumber: 73,
                                     columnNumber: 13
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/signup-view/signup-view.jsx",
-                            lineNumber: 77,
+                            lineNumber: 71,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -41817,7 +41811,7 @@ const SignupView = ({ onSignedUp })=>{
                                     children: "Password: "
                                 }, void 0, false, {
                                     fileName: "src/components/signup-view/signup-view.jsx",
-                                    lineNumber: 89,
+                                    lineNumber: 83,
                                     columnNumber: 13
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -41829,13 +41823,13 @@ const SignupView = ({ onSignedUp })=>{
                                     className: "mb-3"
                                 }, void 0, false, {
                                     fileName: "src/components/signup-view/signup-view.jsx",
-                                    lineNumber: 90,
+                                    lineNumber: 84,
                                     columnNumber: 13
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/signup-view/signup-view.jsx",
-                            lineNumber: 88,
+                            lineNumber: 82,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -41845,7 +41839,7 @@ const SignupView = ({ onSignedUp })=>{
                                     children: "Birthday: "
                                 }, void 0, false, {
                                     fileName: "src/components/signup-view/signup-view.jsx",
-                                    lineNumber: 100,
+                                    lineNumber: 94,
                                     columnNumber: 13
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -41855,13 +41849,13 @@ const SignupView = ({ onSignedUp })=>{
                                     required: true
                                 }, void 0, false, {
                                     fileName: "src/components/signup-view/signup-view.jsx",
-                                    lineNumber: 101,
+                                    lineNumber: 95,
                                     columnNumber: 13
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/signup-view/signup-view.jsx",
-                            lineNumber: 99,
+                            lineNumber: 93,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -41871,24 +41865,24 @@ const SignupView = ({ onSignedUp })=>{
                             children: "Submit"
                         }, void 0, false, {
                             fileName: "src/components/signup-view/signup-view.jsx",
-                            lineNumber: 108,
+                            lineNumber: 102,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/signup-view/signup-view.jsx",
-                    lineNumber: 65,
+                    lineNumber: 59,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/signup-view/signup-view.jsx",
-                lineNumber: 64,
+                lineNumber: 58,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/signup-view/signup-view.jsx",
-        lineNumber: 62,
+        lineNumber: 56,
         columnNumber: 5
     }, undefined);
 };
@@ -41927,12 +41921,14 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
     const [birthday, setBirthday] = (0, _react.useState)(user.birthday);
     // Filter Favorite Books
     const favBooks = books.filter((book)=>user.favorites.includes(book.id));
-    // Display Correct Birthday
+    // Display correct birthday and correct react warning
     const date = new Date(birthday);
+    date.setDate(date.getDate() + 1);
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const day = date.getDate().toString().padStart(2, "0");
     const year = date.getFullYear();
     const formattedBirthday = `${month}-${day}-${year}`;
+    const inputBirthday = new Date(birthday).toISOString().split("T")[0];
     // Deregister User
     const handleDelete = async (e)=>{
         e.preventDefault();
@@ -41994,12 +41990,12 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                 children: "My Info"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 121,
+                                lineNumber: 122,
                                 columnNumber: 13
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 120,
+                            lineNumber: 121,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -42011,7 +42007,7 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                             children: "Username:"
                                         }, void 0, false, {
                                             fileName: "src/components/profile-view/profile-view.jsx",
-                                            lineNumber: 125,
+                                            lineNumber: 126,
                                             columnNumber: 15
                                         }, undefined),
                                         " ",
@@ -42019,7 +42015,7 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 124,
+                                    lineNumber: 125,
                                     columnNumber: 13
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
@@ -42028,7 +42024,7 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                             children: "Email:"
                                         }, void 0, false, {
                                             fileName: "src/components/profile-view/profile-view.jsx",
-                                            lineNumber: 128,
+                                            lineNumber: 129,
                                             columnNumber: 15
                                         }, undefined),
                                         " ",
@@ -42036,7 +42032,7 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 127,
+                                    lineNumber: 128,
                                     columnNumber: 13
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
@@ -42045,7 +42041,7 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                             children: "Birthday:"
                                         }, void 0, false, {
                                             fileName: "src/components/profile-view/profile-view.jsx",
-                                            lineNumber: 131,
+                                            lineNumber: 132,
                                             columnNumber: 15
                                         }, undefined),
                                         " ",
@@ -42053,24 +42049,24 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 130,
+                                    lineNumber: 131,
                                     columnNumber: 13
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 123,
+                            lineNumber: 124,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 119,
+                    lineNumber: 120,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 118,
+                lineNumber: 119,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -42082,12 +42078,12 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                 children: "Update Me"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 139,
+                                lineNumber: 140,
                                 columnNumber: 13
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 138,
+                            lineNumber: 139,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -42103,12 +42099,12 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                                     children: "Username:"
                                                 }, void 0, false, {
                                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                                    lineNumber: 145,
+                                                    lineNumber: 146,
                                                     columnNumber: 19
                                                 }, undefined)
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                                lineNumber: 144,
+                                                lineNumber: 145,
                                                 columnNumber: 17
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -42119,13 +42115,13 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                                 className: "mb-3"
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                                lineNumber: 147,
+                                                lineNumber: 148,
                                                 columnNumber: 17
                                             }, undefined)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 143,
+                                        lineNumber: 144,
                                         columnNumber: 15
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -42136,12 +42132,12 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                                     children: "Email:"
                                                 }, void 0, false, {
                                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                                    lineNumber: 157,
+                                                    lineNumber: 158,
                                                     columnNumber: 19
                                                 }, undefined)
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                                lineNumber: 156,
+                                                lineNumber: 157,
                                                 columnNumber: 17
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -42152,13 +42148,13 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                                 className: "mb-3"
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                                lineNumber: 159,
+                                                lineNumber: 160,
                                                 columnNumber: 17
                                             }, undefined)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 155,
+                                        lineNumber: 156,
                                         columnNumber: 15
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -42169,28 +42165,28 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                                     children: "Birthday:"
                                                 }, void 0, false, {
                                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                                    lineNumber: 169,
+                                                    lineNumber: 170,
                                                     columnNumber: 19
                                                 }, undefined)
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                                lineNumber: 168,
+                                                lineNumber: 169,
                                                 columnNumber: 17
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
                                                 type: "date",
-                                                value: birthday,
+                                                value: inputBirthday,
                                                 onChange: (e)=>setBirthday(e.target.value),
                                                 className: "mb-3"
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                                lineNumber: 171,
+                                                lineNumber: 172,
                                                 columnNumber: 17
                                             }, undefined)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 167,
+                                        lineNumber: 168,
                                         columnNumber: 15
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -42199,29 +42195,29 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                         children: "Submit"
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 178,
+                                        lineNumber: 179,
                                         columnNumber: 15
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 142,
+                                lineNumber: 143,
                                 columnNumber: 13
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 141,
+                            lineNumber: 142,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 137,
+                    lineNumber: 138,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 136,
+                lineNumber: 137,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -42236,22 +42232,22 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                         children: "Favorite Books"
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 190,
+                                        lineNumber: 191,
                                         columnNumber: 17
                                     }, undefined)
                                 }, void 0, false, {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 189,
+                                    lineNumber: 190,
                                     columnNumber: 15
                                 }, undefined)
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 188,
+                                lineNumber: 189,
                                 columnNumber: 13
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 187,
+                            lineNumber: 188,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -42272,25 +42268,25 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                                             alt: book.title
                                                         }, void 0, false, {
                                                             fileName: "src/components/profile-view/profile-view.jsx",
-                                                            lineNumber: 201,
+                                                            lineNumber: 202,
                                                             columnNumber: 25
                                                         }, undefined),
                                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Figure).Caption, {
                                                             children: book.title
                                                         }, void 0, false, {
                                                             fileName: "src/components/profile-view/profile-view.jsx",
-                                                            lineNumber: 202,
+                                                            lineNumber: 203,
                                                             columnNumber: 25
                                                         }, undefined)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                                    lineNumber: 200,
+                                                    lineNumber: 201,
                                                     columnNumber: 23
                                                 }, undefined)
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                                lineNumber: 199,
+                                                lineNumber: 200,
                                                 columnNumber: 21
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -42298,35 +42294,35 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                                 children: "Remove"
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                                lineNumber: 205,
+                                                lineNumber: 206,
                                                 columnNumber: 21
                                             }, undefined)
                                         ]
                                     }, book.id, true, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 198,
+                                        lineNumber: 199,
                                         columnNumber: 19
                                     }, undefined);
                                 })
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 195,
+                                lineNumber: 196,
                                 columnNumber: 13
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 194,
+                            lineNumber: 195,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 186,
+                    lineNumber: 187,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 185,
+                lineNumber: 186,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -42338,12 +42334,12 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                 children: "Deregister"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 219,
+                                lineNumber: 220,
                                 columnNumber: 13
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 218,
+                            lineNumber: 219,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -42354,7 +42350,7 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                         children: "Please remove me from the app and delete all my data:"
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 223,
+                                        lineNumber: 224,
                                         columnNumber: 15
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -42365,35 +42361,35 @@ const ProfileView = ({ user, token, books, setUser, removeFavorite })=>{
                                         children: "Deregister"
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.jsx",
-                                        lineNumber: 226,
+                                        lineNumber: 227,
                                         columnNumber: 15
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 222,
+                                lineNumber: 223,
                                 columnNumber: 13
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 221,
+                            lineNumber: 222,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 217,
+                    lineNumber: 218,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 216,
+                lineNumber: 217,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 117,
+        lineNumber: 118,
         columnNumber: 5
     }, undefined);
 };
@@ -42407,6 +42403,6 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","react-bootstrap":"3AD9A","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","react-router-dom":"9xmpe"}],"lJZlQ":[function() {},{}]},["d8m58","1xC6H","d8Dch"], "d8Dch", "parcelRequirebbde")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"lJZlQ":[function() {},{}]},["d8m58","1xC6H","d8Dch"], "d8Dch", "parcelRequirebbde")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
