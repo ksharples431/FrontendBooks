@@ -34,11 +34,10 @@ export const ProfileView = ({
   const date = new Date(birthday);
   date.setDate(date.getDate() + 1);
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const day = date.getDate().toString().padStart(2, '0')
+  const day = date.getDate().toString().padStart(2, '0');
   const year = date.getFullYear();
   const formattedBirthday = `${month}-${day}-${year}`;
-  const inputBirthday = new Date(birthday).toISOString().split('T')[0];
-
+  // const inputBirthday = new Date(birthday).toISOString().split('T')[0];
 
   // Deregister User
   const handleDelete = async (e) => {
@@ -147,6 +146,8 @@ export const ProfileView = ({
                 </Form.Label>
                 <Form.Control
                   type="text"
+                  name="username"
+                  placeholder="Enter new username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   minLength="3"
@@ -171,7 +172,7 @@ export const ProfileView = ({
                 </Form.Label>
                 <Form.Control
                   type="date"
-                  value={inputBirthday}
+                  value={birthday}
                   onChange={(e) => setBirthday(e.target.value)}
                   className="mb-3"
                 />
